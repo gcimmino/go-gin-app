@@ -9,27 +9,19 @@ import (
 func showIndexPage(context *gin.Context)  {
   articles := getAllArticles()
 
-  context.HTML(
-    http.StatusOK,
-    "index.html",
-    gin.H{
-      "title": "Home Page",
-      "payload": articles,
-    },
-  )
+  render(context, gin.H{
+    "title": "Home Page",
+    "payload": articles,
+  }, "index.html")
 }
 
 func getArticle(context *gin.Context)  {
   if articleID, err := strconv.Atoi(context.Param("article_id")); err == nil {
     if article, err := getArticleByID(articleID); err == nil {
-      context.HTML(
-        http.StatusOK,
-        "article.html",
-        gin.H{
-          "title": article.Title,
-          "payload": article,
-        },
-      )
+      render(context, gin.H{
+        "title": article.Title,
+        "payload": article,
+      }, "article.html")
     } else {
       context.AbortWithError(http.StatusNotFound, err)
     }
