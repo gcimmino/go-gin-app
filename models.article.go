@@ -1,3 +1,5 @@
+package main
+
 type article struct {
   ID      int    `json:"id"`
   Title   string `json:"title"`
@@ -10,6 +12,6 @@ var articleList = []article{
 }
 
 
-func getAllArticles()  {
+func getAllArticles() []article {
   return articleList
 }

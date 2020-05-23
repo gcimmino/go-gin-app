@@ -2,6 +2,8 @@ package main
 
 import "github.com/gin-gonic/gin"
 
+// import "routes"
+
 // import (
 //   "net/http"
 //   "github.com/gin-gonic/gin"
@@ -10,7 +12,7 @@ import "github.com/gin-gonic/gin"
 var router *gin.Engine
 
 func main() {
-  router := gin.Default()
+  router = gin.Default()
 
   router.LoadHTMLGlob("templates/*")
 
