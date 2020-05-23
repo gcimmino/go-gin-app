@@ -8,18 +8,18 @@ import (
   "testing"
 )
 
-func TestShowIndexPageUnauthenticated(test *testing.T)  {
+func TestShowIndexPageUnauthenticated(test *testing.T) {
   router := getRouter(true)
 
   router.GET("/", showIndexPage)
 
   request, _ := http.NewRequest("GET", "/", nil)
 
-  testHTTPRestponse(testm routerm requestm func(w *httptest.ResponseRecorder) bool {
+  testHTTPResponse(test, router, request, func(w *httptest.ResponseRecorder) bool {
     statusOK := w.Code == http.StatusOK
 
     page, err := ioutil.ReadAll(w.Body)
-    pageOK := err == nil  && strings.Index(string(p), "<title>Home Page</title>") > 0
+    pageOK := err == nil  && strings.Index(string(page), "<title>Home Page</title>") > 0
 
     return statusOK && pageOK
   })

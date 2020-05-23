@@ -21,16 +21,16 @@ func TestMain(main *testing.M)  {
 func getRouter(withTemplates bool) *gin.Engine  {
   router := gin.Default()
   if withTemplates {
-    router.LoadHTMLGlobal("templates/*")
+    router.LoadHTMLGlob("templates/*")
   }
 
   return router
 }
 
 // Helper to process request and test response
-func testHTTPRestponse(test *testing.T, router *gin.Engine, request *http.Request, f func(w *httptest.ResponseRecorder) bool)  {
+func testHTTPResponse(test *testing.T, router *gin.Engine, request *http.Request, f func(w *httptest.ResponseRecorder) bool)  {
   // Response recorder
-  w := httptest.NetRecorder()
+  w := httptest.NewRecorder()
 
   // Create service and process the request
   router.ServeHTTP(w, request)
